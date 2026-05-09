@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <title>Document</title>
+    <style>
+
+        :root {
+
+            --vert-turquoise: #11cea6;
+            --vert-doux: #51c68a;
+            --saumon: #fd8875;
+            --bleu-gris: #3d6779;
+            --gris-clair: #c5c8c8;
+            --jaune-sable: #facf82;
+            --bleu-turquoise: #28b2b8;
+            --rose-beige: #e1a08f;
+            --menthe-clair: #aaf7ef;
+            --white:#faf2f2;
+        }
+
+       body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;    
+    }
+    .containerPrincipale{
+        display: flex;
+        background-color: var(--gris-clair);
+        height: 100vh;
+        justify-content: center;
+        align-items: center;
+    }
+    .grille{
+        display: flex;
+        flex-direction: row;
+        background-color: var(--white);
+        height: 80%;
+        width: 60%;
+    
+    }
+    .sidebar{
+        flex: 1;
+        background-color: var(--bleu-gris);
+        display: grid;
+        grid-template-rows:repeat(11, 1fr) ;
+
+    }
+    .icone1,.icone2,.icone3,.icone4,.icone5, .icone6,.icone7,.icone8,.icone11{
+    grid-column: span 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.icone2{
+    background-color: var(--white);
+}
+
+
+
+    .rectangle{
+        flex: 15;
+        display: grid;
+        grid-template-rows: 3fr 2fr 3fr;
+        gap: 5px;
+    }
+    .cadre1{
+        display: grid;
+        grid-template-columns:2fr 3fr 2fr ;
+        gap: 5px;
+    }
+    .rec1{
+        grid-column: span 1;
+        background-color: #51c68a;
+    }
+    .rec2{
+
+        grid-column: span 2;
+        background-color: #2e19b4;
+    }
+    .rec3{
+    }
+    
+    .cadre2{
+        background-color: #facf82;
+    }
+    .cadre3{
+        background-color: crimson;
+    }
+        
+    </style>
+</head>
+<body>
+        <div class="containerPrincipale">
+            <div class="grille">
+                <div class="sidebar">
+                    <div class="icone1"><i class="fa-solid fa-mountain" style="color: rgb(255, 255, 255);"></i></div>
+                    <div class="icone2"><i class="fa-solid fa-bars" style="color: rgb(218, 160, 145);"></i></div>
+                    <div class="icone3"><i class="fa-solid fa-eye" style="color: rgb(255, 255, 255);"></i></div>
+                    <div class="icone4"><i class="fa-regular fa-chart-bar" style="color:rgb(255, 255, 255);"></i></div>
+                    <div class="icone5"><i class="fa-regular fa-user" style="color: rgb(255, 255, 255);"></i></div>
+                    <div class="icone6"><i class="fa-solid fa-download" style="color: rgb(255, 255, 255);"></i></div>
+                    <div class="icone7"><i class="fa-regular fa-calendar" style="color: rgb(255, 255, 255);"></i></div>
+                    <div class="icone8"><i class="fa-solid fa-gear" style="color: rgb(255, 255, 255);"></i></div>
+                    <div class="icone9"></div>
+                    <div class="icone10"></div>
+                    <div class="icone11"><i class="fa-solid fa-power-off" style="color: rgb(255, 255, 255);"></i></div>
+
+
+                </div>
+                <div class="rectangle">
+                    <div class="cadre1">
+                        <div class="rec1"></div>
+                        <div class="rec2></div>
+                        <div class="rec3></div>
+                    </div>
+                    <div class="cadre2"></div>
+                    <div class="cadre3"></div>
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+
+    
+</body>
+</html>

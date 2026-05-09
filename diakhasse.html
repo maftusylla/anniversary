@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hébergement Web</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #f4f6fb;
+      color: #222;
+      padding: 40px 20px 60px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1a3d7c;
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 40px;
+    }
+
+    /* ── GRID PRINCIPAL : 3 colonnes ── */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    /* ── CARTE ── */
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      border: 1.5px solid #e0e6f0;
+      padding: 28px 24px 32px;
+      position: relative;
+    }
+
+    .card.featured {
+      border-color: #1a3d7c;
+      box-shadow: 0 8px 30px rgba(26,61,124,.15);
+    }
+
+    /* Badge "Meilleure vente" */
+    .badge {
+      display: none;
+      background: #1a3d7c;
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 700;
+      text-align: center;
+      padding: 6px 0;
+      border-radius: 10px 10px 0 0;
+      margin: -28px -24px 20px;
+      letter-spacing: .5px;
+    }
+
+    .card.featured .badge { display: block; }
+
+    /* Titre & sous-titre */
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #1a3d7c;
+      margin-bottom: 6px;
+    }
+
+    .card-subtitle {
+      font-size: .85rem;
+      color: #666;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    /* Zone prix */
+    .price-row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+
+    .old-price {
+      font-size: .85rem;
+      color: #999;
+      text-decoration: line-through;
+    }
+
+    .economy-badge {
+      background: #e8f5e9;
+      color: #2e7d32;
+      font-size: .75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .price-main {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #1a3d7c;
+      line-height: 1;
+    }
+
+    .price-main span {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .price-ttc {
+      font-size: .78rem;
+      color: #999;
+      margin-bottom: 20px;
+    }
+
+    /* Bouton */
+    .btn {
+      display: block;
+      width: 100%;
+      background: #f26522;
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: .95rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      padding: 13px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      margin-bottom: 24px;
+      transition: background .2s;
+    }
+
+    .btn:hover { background: #d9551a; }
+
+    /* ── GRID FEATURES ── */
+    .features {
+      display: grid;
+      gap: 0;
+    }
+
+    .section-label {
+      display: grid;
+      grid-template-columns: 20px 1fr;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: .9rem;
+      color: #333;
+      margin: 18px 0 10px;
+    }
+
+    .section-label svg { color: #f26522; }
+
+    .feature-item {
+      display: grid;
+      grid-template-columns: 20px 1fr 16px;
+      align-items: center;
+      gap: 8px;
+      font-size: .83rem;
+      color: #444;
+      padding: 5px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .feature-item:last-child { border-bottom: none; }
+
+    .check { color: #2e7d32; font-size: 1rem; }
+    .highlight { color: #f26522; font-weight: 700; }
+
+    .info-icon {
+      color: #bbb;
+      font-size: .75rem;
+      cursor: help;
+      text-align: right;
+    }
+
+    /* ── FOOTER LINK ── */
+    .footer-link {
+      display: grid;
+      place-items: center;
+      margin-top: 40px;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .footer-link a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid #1a3d7c;
+      border-radius: 10px;
+      padding: 14px 32px;
+      color: #1a3d7c;
+      font-weight: 700;
+      font-size: .9rem;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .footer-link a:hover { background: #eef2fb; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Gagnez du temps, laissez-nous gérer votre hébergement.</h1>
+
+  <div class="pricing-grid">
+
+    <!-- ══ PERSO ══ -->
+    <div class="card">
+      <div class="card-title">Breukh Perso</div>
+      <p class="card-subtitle">Solution idéale pour lancer votre site rapidement</p>
+
+      <div class="price-row">
+        <span class="old-price">3,99 €</span>
+        <span class="economy-badge">Économisez 63%</span>
+      </div>
+      <div class="price-main">1<sup>,49</sup><span> € HT/mois</span></div>
+      <p class="price-ttc">1,79€ TVA comprise</p>
+
+      <a href="#" class="btn">Commander →</a>
+
+      <div class="features">
+        <!-- Perf -->
+        <div class="feature-item">
+          <span class="check">✔</span><span>Performance standard</span><span class="info-icon">ⓘ</span>
+        </div>
+        <div class="feature-item">
+          <span class="check">✔</span><span><span class="highlight">3</span> sites hébergeables</span><span class="info-icon">ⓘ</span>
+        </div>
+
+        <!-- Domaines -->
+        <div class="section-label">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Domaines
+        </div>
+        <div class="feature-item"><span class="check">✔</span><span><span class="highlight">1</span> nom de domaine offert</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Certificat SSL (https)</span><span class="info-icon">ⓘ</span></div>
+
+        <!-- Mails -->
+        <div class="section-label">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          Mails
+        </div>
+        <div class="feature-item"><span class="check">✔</span><span><span class="highlight">5</span> adresses e-mail pro</span><span class="info-icon">ⓘ</span></div>
+
+        <!-- Hébergement -->
+        <div class="section-label">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Hébergement
+        </div>
+        <div class="feature-item"><span class="check">✔</span><span><span class="highlight">100 Go</span> d'espace disque SSD</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>PHP / MySQL</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>WordPress, Joomla…</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Trafic illimité</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>WordPress Manager</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Sauvegardes journalières automatiques</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Mises à jour automatiques</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Détection automatique des problèmes</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Scan de vitesse</span><span class="info-icon">ⓘ</span></div>
+      </div>
+    </div>
+
+    <!-- ══ STARTER (featured) ══ -->
+    <div class="card featured">
+      <div class="badge">Meilleure vente</div>
+      <div class="card-title">Breukh Starter</div>
+      <p class="card-subtitle">Solution idéale pour les PME et blogueurs actifs</p>
+
+      <div class="price-row">
+        <span class="old-price">5,99 €</span>
+        <span class="economy-badge">Économisez 42%</span>
+      </div>
+      <div class="price-main">3<sup>,49</sup><span> € HT/mois</span></div>
+      <p class="price-ttc">4,19€ TVA comprise</p>
+
+      <a href="#" class="btn">Commander →</a>
+
+      <div class="features">
+        <div class="feature-item"><span class="check">✔</span><span>Performance élevée x2</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span><span class="highlight">10</span> sites hébergeables</span><span class="info-icon">ⓘ</span></div>
+
+        <div class="section-label">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Domaines
+        </div>
+        <div class="feature-item"><span class="check">✔</span><span><span class="highlight">1</span> nom de domaine offert</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Certificat SSL (https)</span><span class="info-icon">ⓘ</span></div>
+
+        <div class="section-label">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          Mails
+        </div>
+        <div class="feature-item"><span class="check">✔</span><span><span class="highlight">25</span> adresses e-mail pro</span><span class="info-icon">ⓘ</span></div>
+
+        <div class="section-label">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Hébergement
+        </div>
+        <div class="feature-item"><span class="check">✔</span><span><span class="highlight">200 Go</span> d'espace disque SSD</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>PHP / MySQL</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>WordPress, PrestaShop…</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Trafic illimité</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>WordPress Manager</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Sauvegardes journalières automatiques</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Mises à jour automatiques</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Détection automatique des problèmes</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Scan de vitesse</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Agents WordPress IA ✦</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Créateur de site IA ✦</span><span class="info-icon">ⓘ</span></div>
+      </div>
+    </div>
+
+    <!-- ══ PERFORMANCE ══ -->
+    <div class="card">
+      <div class="card-title">Breukh Performance</div>
+      <p class="card-subtitle">Solution préférée des entreprises et agences web</p>
+
+      <div class="price-row">
+        <span class="old-price">11,99 €</span>
+        <span class="economy-badge">Économisez 42%</span>
+      </div>
+      <div class="price-main">6<sup>,99</sup><span> € HT/mois</span></div>
+      <p class="price-ttc">8,39€ TVA comprise</p>
+
+      <a href="#" class="btn">Commander →</a>
+
+      <div class="features">
+        <div class="feature-item"><span class="check">✔</span><span>Performance ultra x3</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span><span class="highlight">50</span> sites hébergeables</span><span class="info-icon">ⓘ</span></div>
+
+        <div class="section-label">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Domaines
+        </div>
+        <div class="feature-item"><span class="check">✔</span><span><span class="highlight">2</span> noms de domaine offerts</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Certificat SSL (https)</span><span class="info-icon">ⓘ</span></div>
+
+        <div class="section-label">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          Mails
+        </div>
+        <div class="feature-item"><span class="check">✔</span><span><span class="highlight">100</span> adresses e-mail pro</span><span class="info-icon">ⓘ</span></div>
+
+        <div class="section-label">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Hébergement
+        </div>
+        <div class="feature-item"><span class="check">✔</span><span><span class="highlight">300 Go</span> d'espace disque SSD</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>PHP / MySQL</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>WordPress, PrestaShop…</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Trafic illimité</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>WordPress Manager</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Sauvegardes journalières automatiques</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Mises à jour automatiques</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Détection automatique des problèmes</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Scan de vitesse</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Agents WordPress IA ✦</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Créateur de site IA ✦</span><span class="info-icon">ⓘ</span></div>
+        <div class="feature-item"><span class="check">✔</span><span>Support prioritaire</span><span class="info-icon">ⓘ</span></div>
+      </div>
+    </div>
+
+  </div><!-- /pricing-grid -->
+
+  <!-- Footer -->
+  <div class="footer-link">
+    <a href="#">Affichez toutes les fonctions de ces hébergements ∨</a>
+  </div>
+
+</body>
+</html>
